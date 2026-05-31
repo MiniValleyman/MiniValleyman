@@ -1,0 +1,66 @@
+## =========================
+## UNIVERSAL NANORC FOR ALL SYSTEMS
+## =========================
+
+## Auto-indent new lines
+set autoindent
+
+## Show cursor position constantly
+set constantshow
+
+## Enable jumpy scrolling (half-screen)
+set jumpyscrolling
+
+## Show line numbers
+set linenumbers
+
+## Enable multiple buffers
+set multibuffer
+
+## Show buffer indicator
+set indicator
+
+## Remember cursor position per file
+set positionlog
+
+## Make Home key smart
+set smarthome
+
+## Set tab size
+set tabsize 4
+
+## Color settings with comments
+set titlecolor brightyellow,gray       ## Title bar
+set statuscolor brightyellow,gray      ## Status bar
+set errorcolor brightred,black         ## Error messages
+set selectedcolor brightblack,white    ## Selected text
+set stripecolor ,yellow                ## Background stripe in multi-buffer
+set numbercolor orange,black           ## Line numbers
+set keycolor brightgreen,black         ## Shortcut keys
+set functioncolor brightwhite,black    ## Function keys
+set promptcolor brightwhite,black      ## Prompt messages
+set scrollercolor brightyellow,gray    ## Scrollbar indicator
+
+## Key bindings
+bind ^C copy main
+bind ^V paste main
+bind ^Z undo main
+bind ^Y redo main
+bind ^S savefile main
+bind ^N linenumbers main
+
+## Unbind unused keys
+unbind ^P main
+unbind ^U all
+
+## Ctrl+Q = save buffer (exit manually)
+bind ^Q savefile main                  ## Save current buffer (then use Ctrl+X to exit)
+
+## Include all available syntax files
+#include "/ffp/share/nano/*.nanorc"
+include "/usr/share/nano/*.nanorc"
+#include "/data/data/com.termux/files/usr/share/nano/*.nanorc"
+
+## =========================
+## END OF UNIVERSAL NANORC
+## =========================
