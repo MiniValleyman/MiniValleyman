@@ -4,7 +4,7 @@ export LS_COLORS
 EDITOR='nano'
 export EDITOR
 
-NANORC='/home/codespace/.nanorc'
+NANORC='/workspaces/MiniValleyman/.nanorc'
 export NANORC
 
 alias ls='ls -1Ahv --color=tty --group-directories-first'
