@@ -16,3 +16,5 @@ alias ..='cd ..'
 alias ...='.. && ..'
 alias ....='... && ..'
 alias .....='.... && ..'
+
+source "$HOME/.local/etc/profile"
