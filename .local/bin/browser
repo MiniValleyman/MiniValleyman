@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Open Android Chrome through reverse SSH tunnel
+
+URL="$1"
+
+if [ -z "$URL" ]; then
+    echo "Usage: browser URL"
+    exit 1
+fi
+
+ssh \
+    -p 2222 \
+    -i .ssh/server \
+    -o StrictHostKeyChecking=no \
+    -o UserKnownHostsFile=/dev/null \
+    root@localhost \
+    "/data/data/com.termux/files/home/.local/bin/via '$URL'"

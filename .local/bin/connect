@@ -1,0 +1,46 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [ -f "$HOME/.local/bin/sshfs" ] ; then
+	SSHFS="$HOME/.local/bin/sshfs"
+fi
+
+# Install sshfs only if it is missing
+#if ! dpkg -s sshfs >/dev/null 2>&1; then
+#    sudo apt update
+#    sudo apt install -y sshfs
+#fi
+
+# Detect current user home directory
+if [ -d "/home/phatevalleyman" ]; then
+    USERNAME="phatevalleyman"
+elif [ -d "/home/mini_jonas_mul_ler" ]; then
+    USERNAME="mini_jonas_mul_ler"
+else
+    echo "ERROR: Unknown user"
+    exit 1
+fi
+
+# Define mount point
+MOUNTPOINT="/home/$USERNAME/storage/redmi"
+
+# Skip mounting if already mounted
+if mountpoint -q "$MOUNTPOINT"; then
+    echo "Already mounted: $MOUNTPOINT"
+    exit 0
+fi
+
+# Create mount directory if missing
+mkdir -p "$MOUNTPOINT"
+
+# Mount remote filesystem
+sudo sshfs \
+    -o IdentityFile="/home/$USERNAME/.ssh/server" \
+    -p 2222 \
+    -o reconnect,allow_other,follow_symlinks \
+    -o StrictHostKeyChecking=no \
+    -o UserKnownHostsFile=/dev/null \
+    root@localhost:/ \
+    "$MOUNTPOINT"
+
